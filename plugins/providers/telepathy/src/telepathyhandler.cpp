@@ -684,9 +684,11 @@ void TelepathyHandler::onStreamedMediaChannelHangupCallFinished(Tp::PendingOpera
         return;
     }
 
-    setStatus(STATUS_DISCONNECTED);
+    // XXX Here the handler is getting invalidated, but the channel doesn't seem to close
+    //setStatus(STATUS_DISCONNECTED);
 
-    emit this->invalidated("closed", "user");
+   // emit this->invalidated("closed", "user");
+   WARNING_T(QString("Not invalidating channel as an experiment..."));
 }
 
 void TelepathyHandler::onStreamedMediaChannelCallStateChanged()
